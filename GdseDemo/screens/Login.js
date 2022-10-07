@@ -5,17 +5,17 @@ export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setpassword] = useState("");
 
-  const printStates=()=>{
-    console.log(userName+""+password);
-}
+  const printStates = () => {
+    console.log(userName + "" + password);
+  }
 
   return (
     <View style={styles.container}>
       <Image style={styles.appImgContainer}
         source={require('../screens/img/userLogin.png')}
       />
-      <TextInput style={styles.placeHolderContainerUserName} placeholder='Username' value={userName} onChangeText={(e)=>{setUserName(e)}} />
-      <TextInput style={styles.placeHolderContainerPassword} placeholder='Password' value={password} onChangeText={(e)=>{setpassword(e)}} />
+      <TextInput style={styles.placeHolderContainerUserName} placeholder='Username' value={userName} onChangeText={(e) => { setUserName(e) }} />
+      <TextInput style={styles.placeHolderContainerPassword} placeholder='Password' value={password} onChangeText={(e) => { setpassword(e) }} />
       <TouchableOpacity
         style={styles.LoginBtnContainer}
         onPress={printStates}
