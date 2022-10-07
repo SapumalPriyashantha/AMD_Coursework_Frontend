@@ -6,10 +6,10 @@ export default function Home() {
         <View >
             <View style={styles.subContainer_1}>
                 <TouchableOpacity style={styles.appButtonContainer}>
-                    <Text style={styles.appButtonContainer}>Login</Text>
+                    <Text style={{color:'#fcfffe',alignSelf:"center",fontSize:15}}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.appButtonContainer}>
-                    <Text style={styles.appButtonContainer}>Sign In</Text>
+                    <Text style={{color:'#fcfffe',alignSelf:"center",fontSize:15}}>Sign In</Text>
                 </TouchableOpacity>
             </View>
 
@@ -32,12 +32,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#1300FF",
         borderRadius: 10,
         paddingHorizontal: 10,
-    },
-    appButtonText: {
-        fontSize: 18,
-        fontWeight: "bold",
-        alignSelf: "center",
-        color: "#fcfffe",
+        borderColor:"#000000",
+        borderWidth: 1,
+        marginLeft:"1%",
+        marginRight:"2%"
     },
     appImgContainer: {
         marginTop: '60%',
