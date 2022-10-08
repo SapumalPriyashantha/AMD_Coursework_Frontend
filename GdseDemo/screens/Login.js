@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image } from 'react-native'
 
-export default function Login() {
+export default function Login({ navigation }) {
   const [userName, setUserName] = useState("");
   const [password, setpassword] = useState("");
 
@@ -18,7 +18,7 @@ export default function Login() {
       <TextInput style={styles.placeHolderContainerPassword} placeholder='Password' value={password} onChangeText={(e) => { setpassword(e) }} />
       <TouchableOpacity
         style={styles.LoginBtnContainer}
-        onPress={printStates}
+        onPress={()=>{navigation.navigate("Search")}}
       >
         <Text style={{ color: '#ffff', fontSize: 20 }}>Login</Text>
       </TouchableOpacity>
@@ -33,10 +33,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   appImgContainer: {
-    width: '15%',
-    height: '15%',
     width: "25%",
-    height: "16%",
+    height: "17%",
   },
   placeHolderContainerUserName: {
     marginTop: '10%',
