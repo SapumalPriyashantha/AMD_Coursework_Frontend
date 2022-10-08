@@ -60,5 +60,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: '3%',
     borderRadius: 20
-  }
+  },
+  datePickerContainer: {
+    marginTop: 10,
+},
+DataPickerBtnContainer: {
+    width: '17%',
+    backgroundColor: "#ffffff",
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+ DataPickerImgContainer: {
+    width: '40%',
+    height: '60%',
+},
 });
