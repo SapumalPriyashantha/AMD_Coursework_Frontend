@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SaveVehical from "./screens/SaveVehical";
 import TempSearch from "./screens/TempSearch";
+import MoreDetails from "./screens/MoreDetails";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ function App() {
         <Stack.Screen name="TempSearch" component={TempSearch} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SaveVehical" component={SaveVehical} />
+        <Stack.Screen name="MoreDetails" component={MoreDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );

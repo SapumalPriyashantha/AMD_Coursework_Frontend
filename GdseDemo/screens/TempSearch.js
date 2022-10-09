@@ -136,14 +136,28 @@ export default function TempSearch({ navigation }) {
                     <TouchableOpacity style={{
                         borderWidth: 1, marginBottom: '5%', padding: 5, marginVertical: 8,
                         marginHorizontal: 16,
-                    }} onPress={() => { console.log("hello"); }}>
-                        <Text  >{item.location}</Text>
-                        <Text  >{item.vehicalNumber}</Text>
-                        <Text  >{item.vehicalName}</Text>
-                        <Text  >{item.vehicalImage}</Text>
-                        <Text  >{item.vehicalAddDate}</Text>
-                        <Text  >{item.otherDetails}</Text>
+                    }} onPress={() => { navigation.navigate("MoreDetails",{obj:item}) }}>
+                        <View style={styles.flatListContainer}>
+                            <View>
+                                <Image source={{ uri: item.vehicalImage }} style={styles.flatListImage} />
+                            </View>
+                            <View style={styles.flatListText}>
+                                <Text  >{item.location}</Text>
+                                <Text  >{item.vehicalNumber}</Text>
+                                <Text  >{item.vehicalName}</Text>
+                                <Text  >{item.vehicalAddDate}</Text>
+                                <Text  >{item.otherDetails}</Text>
+                            </View>
+                        </View>
                     </TouchableOpacity>
+
+// onPress={() => {
+//     navigation.navigate('VehicleDetail', {vehicle: item});
+//   }}
+
+
+
+
                 }
             />
         </View>
@@ -184,5 +198,26 @@ const styles = StyleSheet.create({
     addBtnImageContainer: {
         width: '40%',
         height: '60%',
+    },
+    flatListContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    ImageSections: {
+        display: 'flex',
+        flexDirection: 'row',
+        paddingHorizontal: 8,
+        paddingVertical: 8,
+        justifyContent: 'center'
+    },
+    flatListImage: {
+        width: 100,
+        height: 90,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginHorizontal: 3
+    },
+    flatListText: {
+        marginLeft: 10
     }
 });

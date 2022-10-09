@@ -1,4 +1,4 @@
-import React, { Fragment, Component, useState } from 'react';
+import React, { Fragment, Component, useState,useEffect } from 'react';
 import { launchCamera, launchImageLibrary, showImagePicker } from 'react-native-image-picker';
 import {
     SafeAreaView,
@@ -25,7 +25,7 @@ import { TextArea, Box, Center, NativeBaseProvider } from "native-base";
 import DatePicker from 'react-native-date-picker';
 
 export default function SaveVehical() {
-    const [file, setFile] = useState("./img/thumbnail-image.jpg");//thumbnail-image.jpg
+    const [file, setFile] = useState("");//thumbnail-image.jpg
 
     const [vehicalNumber, setvehicalNumber] = useState("");
     const [vehicalName, setvehicalName] = useState("");
