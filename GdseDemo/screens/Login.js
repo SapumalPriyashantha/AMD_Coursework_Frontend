@@ -5,9 +5,34 @@ export default function Login({ navigation }) {
   const [userName, setUserName] = useState("");
   const [password, setpassword] = useState("");
 
-  const printStates = () => {
-    console.log(userName + "" + password);
-  }
+  const printStates = async () => {
+    try {
+      const response = await fetch('http://192.168.1.103:4000/user/login', {//192.168.1.103
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          usename: userName,
+          password: password,
+        }),
+      });
+
+      const json = await response.json();
+
+      if (json.message == "Login Successfully") {
+        alert("Login Successfully")
+        navigation.navigate("TempSearch")
+      } else {
+        alert("Try Again Latter")
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Try Again Latter")
+
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -18,7 +43,7 @@ export default function Login({ navigation }) {
       <TextInput style={styles.placeHolderContainerPassword} placeholder='Password' value={password} onChangeText={(e) => { setpassword(e) }} />
       <TouchableOpacity
         style={styles.LoginBtnContainer}
-        onPress={()=>{navigation.navigate("Search")}}
+        onPress={printStates}
       >
         <Text style={{ color: '#ffff', fontSize: 20 }}>Login</Text>
       </TouchableOpacity>
@@ -61,18 +86,5 @@ const styles = StyleSheet.create({
     marginTop: '3%',
     borderRadius: 20
   },
-  datePickerContainer: {
-    marginTop: 10,
-},
-DataPickerBtnContainer: {
-    width: '17%',
-    backgroundColor: "#ffffff",
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-},
- DataPickerImgContainer: {
-    width: '40%',
-    height: '60%',
-},
+
 });

@@ -1,15 +1,40 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 
-export default function SignIn() {
+export default function SignIn({navigation}) {
     const [yourName, setyourName] = useState("");
     const [userName, setuserName] = useState("");
     const [password, setpassword] = useState("");
     const [retypePassword, setretypePassword] = useState("");
 
-    const printStates = () => {
-        console.log(yourName + " " + userName + " " + password + " " + retypePassword);
-    }
+
+    const printStates = async () => {
+        if (password == retypePassword) {
+            try {
+                const response = await fetch('http://192.168.1.103:4000/user/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        realname: yourName,
+                        usename: userName,
+                        password: password,
+                    }),
+                });
+
+                const json = await response.json();
+                alert(json.message)
+                navigation.navigate("TempSearch")
+
+            } catch (error) {
+                console.error(error);
+                alert("Try Again Latter")
+            }
+        }else{
+            alert("Password and Retype password are Dismatch");
+        }
+    };
 
     return (
         <View style={styles.container}>

@@ -25,7 +25,7 @@ import { TextArea, Box, Center, NativeBaseProvider } from "native-base";
 import DatePicker from 'react-native-date-picker';
 
 export default function SaveVehical() {
-    const [file, setFile] = useState("");
+    const [file, setFile] = useState("./img/thumbnail-image.jpg");//thumbnail-image.jpg
 
     const [vehicalNumber, setvehicalNumber] = useState("");
     const [vehicalName, setvehicalName] = useState("");
@@ -35,6 +35,33 @@ export default function SaveVehical() {
 
     const [open,setOpen] = useState(false);
     const [date,setDate] = useState(new Date());
+
+    const saveCar= async () =>{
+        const vehical ={
+            vehicalNumber :vehicalNumber,
+            vehicalName : vehicalName,
+            location : location,
+            vehicalImage : file,
+            vehicalAddDate : date,
+            otherDetails : otherDetails
+        }
+
+        try {
+            const response = await fetch('http://192.168.1.103:4000/vehical/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(vehical),
+            });
+
+            const json = await response.json();
+            alert(json.message)
+        } catch (error) {
+            console.error(error);
+            alert("Try Again Latter")
+        }
+    }
 
     const openGallery = () => {
         let options = {
@@ -56,7 +83,7 @@ export default function SaveVehical() {
                 console.log('User tapped custom button: ', response.customButton);
                 alert(response.customButton);
             } else {
-                const source = { uri: response.assets[0].uri };
+                const source = response.assets[0].uri ;
                 setFile(source);
             }
         });
@@ -67,7 +94,7 @@ export default function SaveVehical() {
         <NativeBaseProvider style={styles.body}>
             <View style={styles.ImageSections}>
                 <View>
-                    <Image source={file} style={styles.images} />
+                    <Image source={{uri:file}} style={styles.images} />
                 </View>
             </View>
 
@@ -106,7 +133,7 @@ export default function SaveVehical() {
 
                 <TouchableOpacity
                     style={styles.LoginBtnContainer}
-                    onPress={() => { console.log(file+""+vehicalNumber+""+vehicalName+""+location+""+date+""+otherDetails) }}
+                    onPress={saveCar}
                 >
                     <Text style={{ color: '#ffff', fontSize: 20 }}>SAVE</Text>
                 </TouchableOpacity>
